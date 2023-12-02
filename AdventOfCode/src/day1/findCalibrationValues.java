@@ -1,4 +1,4 @@
-package Day1;
+package day1;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class solution {
+public class findCalibrationValues {
 
     public static void main(String[] args) {
         String input = "input.txt";
