@@ -33,7 +33,7 @@ public class findPossibleGames {
         int redCubes = 12;
         int greenCubes = 13;
         int blueCubes = 14;
-        int gameNumber = 0;
+        int gameID = 0;
         boolean isPossible = true;
 
         line = line.replaceAll("\\s", "");
@@ -43,7 +43,7 @@ public class findPossibleGames {
         for (int i = 0; i < sets.length; i++) {
             String[] colors = sets[i].split(",");
             for (int j = 0; j < colors.length; j++) {
-                int number = getNumberOfString(colors[j]);
+                int number = getNumbersFromAString(colors[j]);
                 if ((colors[j].contains("red") && number > redCubes) ||
                         (colors[j].contains("green") && number > greenCubes) ||
                         (colors[j].contains("blue") && number > blueCubes)) {
@@ -53,19 +53,19 @@ public class findPossibleGames {
         }
 
         if (isPossible) {
-            gameNumber = getNumberOfString(games[0]);
+            gameID = getNumbersFromAString(games[0]);
         }
 
-        return gameNumber;
+        return gameID;
     }
 
-    public static int getNumberOfString(String gameName) {
-        int id = 0;
+    public static int getNumbersFromAString(String gameName) {
+        int number = 0;
         Pattern pattern = Pattern.compile("[0-9]+");
         Matcher matcher = pattern.matcher(gameName);
         if (matcher.find()) {
-            id = Integer.parseInt(matcher.group());
+            number = Integer.parseInt(matcher.group());
         }
-        return id;
+        return number;
     }
 }
