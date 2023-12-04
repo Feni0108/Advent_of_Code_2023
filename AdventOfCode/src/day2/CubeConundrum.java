@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class findPossibleGames {
+public class CubeConundrum {
 
     public static void main(String[] args) {
         System.out.println(getSumOfPossibleGameIDs("input_day2.txt"));

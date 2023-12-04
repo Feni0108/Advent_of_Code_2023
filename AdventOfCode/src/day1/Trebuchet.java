@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class findCalibrationValues {
+public class Trebuchet {
 
     public static void main(String[] args) {
         String input = "input.txt";
