@@ -27,7 +27,6 @@ public class GearRatios {
     public static List<Integer> getSymbolIDs(String lines) {
         List<Integer> ids = new ArrayList<>();
         for (int i = 0; i < lines.length(); i++) {
-            char symbol = lines.charAt(i);
             if (!Character.isDigit(lines.charAt(i))
                     && !Character.isLetter(lines.charAt(i))
                     && !Character.isWhitespace(lines.charAt(i))
@@ -40,27 +39,16 @@ public class GearRatios {
 
     public static List<List<Integer>> getNumbersData(String line) {
         List<List<Integer>> allNumbers = new ArrayList<>();
-        String newLine = String.valueOf(line);
 
-        for (int i = 0; i < line.length(); i++) {
-            Pattern pattern = Pattern.compile("[0-9]+");
-            Matcher matcher = pattern.matcher(newLine);
+        Pattern pattern = Pattern.compile("[0-9]+");
+        Matcher matcher = pattern.matcher(line);
+
+        while (matcher.find()) {
             List<Integer> data = new ArrayList<>();
-            if (matcher.find()) {
-                int number = Integer.parseInt(matcher.group());
-                int firstIndex = matcher.start();
-                int lasIndex = matcher.end();
-                data.add(firstIndex);
-                data.add(lasIndex);
-                data.add(number);
-                allNumbers.add(data);
-                int length = lasIndex - firstIndex;
-                String dots = "";
-                for (int j = 0; j < length; j++) {
-                    dots += ".";
-                }
-                newLine = newLine.replaceFirst(matcher.group(), dots);
-            }
+            data.add(matcher.start());
+            data.add(matcher.end());
+            data.add(Integer.parseInt(matcher.group()));
+            allNumbers.add(data);
         }
 
         return allNumbers;
