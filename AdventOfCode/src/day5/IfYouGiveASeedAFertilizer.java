@@ -4,19 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class IfYouGiveASeedAFertilizer {
     public static void main(String[] args) {
-        int seedNumber = 79;
-        List<Integer> lineDetails = new ArrayList<>(Arrays.asList(52, 50, 48));
-
         System.out.println(getLocationNumber(readFile("input_day5.txt")));
-
-
     }
 
     public static List<String> readFile(String input) {
