@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,8 +11,8 @@ import java.util.regex.Pattern;
 public class WaitForIt {
 
     public static void main(String[] args) {
-        System.out.println(getWinnerHolds(30, 200));
         System.out.println(getWinnerRecords(readFile("input_day6.txt")));
+        System.out.println(getWinnerRecordSecondChallenge(readFile("input_day6.txt")));
     }
 
     public static List<String> readFile(String input) {
@@ -48,10 +47,27 @@ public class WaitForIt {
         return multiplication;
     }
 
-    public static int getWinnerHolds(int time, int initialDest) {
+    public static long getWinnerRecordSecondChallenge(List<String> input) {
+        input.set(0, input.get(0).replaceAll(" ", ""));
+        input.set(1, input.get(1).replaceAll(" ", ""));
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(input.get(0));
+        Matcher matcher1 = pattern.matcher(input.get(1));
+        long time = 0;
+        long dest = 0;
+        if (matcher.find() && matcher1.find()) {
+            time = Long.parseLong(matcher.group());
+            dest = Long.parseLong(matcher1.group());
+        }
+        System.out.println(time + " " + dest);
+
+        return getWinnerHolds(time, dest);
+    }
+
+    public static int getWinnerHolds(long time, long initialDest) {
         int millisecondsHold;
         int velocity;
-        int dest;
+        long dest;
         int counter = 0;
 
         for (int i = 0; i <= time; i++) {
