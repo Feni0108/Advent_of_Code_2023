@@ -10,13 +10,14 @@ import java.util.Scanner;
 public class CamelCards {
 
     public static void main(String[] args) {
-        List<Hand> hands = getOrderedHandList("input_day7.txt");
-        System.out.println(getTotalWinnings(hands));
+        List<Hand> handsFirst = getOrderedHandList("input_day7.txt");
+        System.out.println(getTotalWinnings(handsFirst));
     }
 
     public static List<Hand> getOrderedHandList(String input) {
         List<Hand> hands = new ArrayList<>();
         int totalWinning = 0;
+        int lineNumber = 0;
         try {
             File file = new File(input);
             Scanner scanner = new Scanner(file);
@@ -26,6 +27,7 @@ public class CamelCards {
                 String hand = handAndBid[0];
                 int bid = Integer.parseInt(handAndBid[1]);
                 hands.add(new Hand(hand, bid));
+                lineNumber++;
             }
 
         } catch (FileNotFoundException e) {
