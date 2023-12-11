@@ -21,7 +21,8 @@ public class MirageMaintenance {
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                sum += getTheLastNumber(line);
+                //sum += getTheLastNumber(line);
+                sum += getTheFirstNumber(line);
             }
 
         } catch (FileNotFoundException e) {
@@ -47,6 +48,43 @@ public class MirageMaintenance {
         }
 
         return getSumOfLastNumbers(lastNumbers);
+    }
+
+    public static int getTheFirstNumber(String line) {
+        String[] numbers = line.split("\\s");
+        List<Integer> realNumbers = convertStringArrayToIntegerList(numbers);
+        List<Integer> copy = new ArrayList<>();
+        copy.addAll(realNumbers);
+
+        List<Integer> firstNumbers = new ArrayList<>();
+        List<List<Integer>> allLines = new ArrayList<>();
+        allLines.add(copy);
+
+        while (!areNUmbersAllZeros(realNumbers)) {
+            List<Integer> newNumbers = getDifferences(realNumbers);
+            allLines.add(newNumbers);
+            realNumbers.clear();
+            realNumbers.addAll(newNumbers);
+        }
+
+        return calculateBeforeFirstNumber(allLines);
+    }
+
+    public static int calculateBeforeFirstNumber(List<List<Integer>> allLines) {
+        List<Integer> justFirstNumbersFromEveryLine = new ArrayList<>();
+
+        for (List<Integer> list : allLines) {
+            justFirstNumbersFromEveryLine.add(list.get(0));
+        }
+
+        justFirstNumbersFromEveryLine.add(0);
+        int toReduceWith = justFirstNumbersFromEveryLine.get(justFirstNumbersFromEveryLine.size() - 2) - justFirstNumbersFromEveryLine.get(justFirstNumbersFromEveryLine.size() - 1);
+
+        for (int i = justFirstNumbersFromEveryLine.size() - 3; i > -1; i--) {
+            toReduceWith = justFirstNumbersFromEveryLine.get(i) - toReduceWith;
+        }
+
+        return toReduceWith;
     }
 
     public static List<Integer> convertStringArrayToIntegerList(String[] numbers) {
