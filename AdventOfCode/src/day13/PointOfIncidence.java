@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PointOfIncidence {
-
     public static void main(String[] args) {
         System.out.println(solve(readFile("input_day13.txt")));
     }

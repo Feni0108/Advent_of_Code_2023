@@ -57,7 +57,6 @@ public class Mirror {
                 return pos + 1;
             }
         }
-
         return 0;
     }
 
@@ -75,7 +74,6 @@ public class Mirror {
                 square.add(onePattern.get(i));
             }
         }
-
         return square;
     }
 }
